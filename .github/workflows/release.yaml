@@ -45,7 +45,7 @@ jobs:
         with:
           go-version: '1.23'
 
-      - run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} make buildC
+      - run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} make build
 
       - uses: actions/upload-release-asset@v1
         env:

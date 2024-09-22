@@ -5,7 +5,7 @@ GOLANG_CI_LINT_VERSION ?= v1.61.0
 SERVICE ?= gcs-proxy
 PROJECT ?= github.com/dimitriin/gcs-proxy
 PROJECT_DIR ?= $(shell pwd)
-GCS_PROXY_DOCKER_IMG_REPO ?= gcs-proxy
+GCS_PROXY_DOCKER_IMG_REPO ?= ghcr.io/dimitriin/gcs-proxy
 GCS_PROXY_DOCKER_IMG_TAG ?= latest
 
 COVER_PROFILE ?=
@@ -42,7 +42,7 @@ test:
 
 testC: gocacheC
 	@echo "+ $@"
-	docker run --rm -i  \
+	@docker run --rm -i  \
 		-v ${PROJECT_DIR}:/go/src/${PROJECT} \
 		--mount source=golang-${GO_VERSION}-mod-cache,target=/go/pkg/mod \
 		--mount source=golang-${GO_VERSION}-build-cache,target=/root/.cache/go-build \
@@ -54,7 +54,7 @@ lintcacheC:
 
 lintC: gocacheC lintcacheC
 	@echo "+ $@"
-	docker run --rm \
+	@docker run --rm \
 		-v ${PROJECT_DIR}:/app \
 		--mount source=golangci-lint-${GOLANG_CI_LINT_VERSION}-cache,target=/root/.cache \
 		--mount source=golang-${GO_VERSION}-mod-cache,target=/go/pkg/mod \
@@ -71,12 +71,12 @@ lintC: gocacheC lintcacheC
 build:
 	@echo "+ $@ ${GOOS}/${GOARCH}"
 	@GOOS=${GOOS} GOARCH=${GOARCH} go build -a -ldflags ${LDFLAGS} -o ${BIN_PATH}/${SERVICE}-${GOOS}-${GOARCH} ./cmd/${SERVICE}
-	@echo "+ binary ${BIN_PATH}/${SERVICE}"
+	@echo "+ binary ${BIN_PATH}/${SERVICE}-${GOOS}-${GOARCH}"
 .PHONY: build
 
-buildC:
+build-image:
 	@echo "+ build image ${GCS_PROXY_DOCKER_IMG_REPO}:${GCS_PROXY_DOCKER_IMG_TAG}"
 	@docker build -t ${GCS_PROXY_DOCKER_IMG_REPO}:${GCS_PROXY_DOCKER_IMG_TAG} .
-.PHONY: buildC
+.PHONY: build-image
 
 
