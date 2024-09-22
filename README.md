@@ -17,17 +17,18 @@ Optional command configuration env variables:
 ### Docker image from source code
 Build docker image from source code:
 ```bash
-make buildC
+make build-image
 ```
 Optional command configuration env variables:
-* `GCS_PROXY_DOCKER_IMG_REPO` (default `gcs-proxy`);
+* `GCS_PROXY_DOCKER_IMG_REPO` (default `ghcr.io/dimitriin/gcs-proxy`);
 * `GCS_PROXY_DOCKER_IMG_TAG` (default `latest`).
 
 ### Prebuilt docker image
-TBA
+Prebuilt docker image could be found at GitHub Container Registry: 
+`ghcr.io/dimitriin/gcs-proxy:${RELEASE_TAG}`
 
 ### Minimal configuration
-By default, proxy try to find default credentials to GCS. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+By default, gcs-proxy tries to find default credentials to GCS. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
 
 Alternatively, custom credentials could be set with one of next environment variables:
 * `GCS_PROXY_GOOGLE_CLOUD_STORAGE_CREDS_JSON` - JSON with GCS service account credentials;
