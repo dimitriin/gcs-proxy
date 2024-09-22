@@ -8,3 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: make lintC
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: make testC
