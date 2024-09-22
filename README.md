@@ -25,7 +25,7 @@ Optional command configuration env variables:
 
 ### Prebuilt docker image
 Prebuilt docker image could be found at GitHub Container Registry: 
-`ghcr.io/dimitriin/gcs-proxy:${RELEASE_TAG}`
+`ghcr.io/dimitriin/gcs-proxy:${RELEASE_TAG}`, for example, `ghcr.io/dimitriin/gcs-proxy:v1.0.0`.
 
 ### Minimal configuration
 By default, gcs-proxy tries to find default credentials to GCS. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
