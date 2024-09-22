@@ -37,7 +37,7 @@ gocacheC:
 
 test:
 	@echo "+ $@"
-	@go test -v -coverprofile=${COVER_PROFILE}  `go list ./...`
+	@go test ./...
 .PHONY: test
 
 testC: gocacheC
