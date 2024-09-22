@@ -1,17 +1,18 @@
-name: Test
+name: tests
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
       - run: make lintC
+
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - run: echo $PWD
-      - run: ls -lah
       - run: make testC

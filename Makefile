@@ -70,7 +70,7 @@ lintC: gocacheC lintcacheC
 
 build:
 	@echo "+ $@ ${GOOS}/${GOARCH}"
-	@GOOS=${GOOS} GOARCH=${GOARCH} go build -a -ldflags ${LDFLAGS} -o ${BIN_PATH}/${SERVICE} ./cmd/${SERVICE}
+	@GOOS=${GOOS} GOARCH=${GOARCH} go build -a -ldflags ${LDFLAGS} -o ${BIN_PATH}/${SERVICE}-${GOOS}-${GOARCH} ./cmd/${SERVICE}
 	@echo "+ binary ${BIN_PATH}/${SERVICE}"
 .PHONY: build
 
