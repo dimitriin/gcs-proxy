@@ -35,8 +35,17 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        arch: [amd64, arm64]
+        os:
+          - ubuntu-latest
+          - macos-latest
+        arch:
+          - amd64
+          - arm64
+        include:
+          - os: ubuntu-latest
+            goos: linux
+          - os: macos-latest
+            goos: darwin
 
     steps:
       - uses: actions/checkout@v4
@@ -45,15 +54,15 @@ jobs:
         with:
           go-version: '1.23'
 
-      - run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} make build
+      - run: GOOS=${{ matrix.goos }} GOARCH=${{ matrix.arch }} make build
 
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.release_upload_url }}
-          asset_path: ./bin/gcs-proxy-${{ matrix.os }}-${{ matrix.arch }}
-          asset_name: gcs-proxy-${{ matrix.os }}-${{ matrix.arch }}
+          asset_path: ./bin/gcs-proxy-${{ matrix.goos }}-${{ matrix.arch }}
+          asset_name: gcs-proxy-${{ matrix.goos }}-${{ matrix.arch }}
           asset_content_type: application/octet-stream
 
   build-and-push-image:
