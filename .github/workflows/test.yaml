@@ -5,13 +5,6 @@ on: [push]
 jobs:
   lint:
     runs-on: ubuntu-latest
-    container:
-      image: golangci/golangci-lint:v1.61.0
     steps:
       - uses: actions/checkout@v4
-      - run: golangci-lint run \
-              --enable-all \
-              --timeout=10m \
-              --max-issues-per-linter 0 \
-              --max-same-issues 0 \
-              ./...
+      - run: make lintC
