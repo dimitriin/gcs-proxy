@@ -42,7 +42,7 @@ test:
 
 testC: gocacheC
 	@echo "+ $@"
-	@docker run --rm -i  \
+	docker run --rm -i  \
 		-v ${PROJECT_DIR}:/go/src/${PROJECT} \
 		--mount source=golang-${GO_VERSION}-mod-cache,target=/go/pkg/mod \
 		--mount source=golang-${GO_VERSION}-build-cache,target=/root/.cache/go-build \
@@ -54,7 +54,7 @@ lintcacheC:
 
 lintC: gocacheC lintcacheC
 	@echo "+ $@"
-	@docker run --rm \
+	docker run --rm \
 		-v ${PROJECT_DIR}:/app \
 		--mount source=golangci-lint-${GOLANG_CI_LINT_VERSION}-cache,target=/root/.cache \
 		--mount source=golang-${GO_VERSION}-mod-cache,target=/go/pkg/mod \
