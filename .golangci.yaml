@@ -1,0 +1,14 @@
+linters:
+  disable:
+    - depguard
+    - tagalign
+    - gomnd
+    - execinquery
+    - exportloopref
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - localmodule
+      - default
+
