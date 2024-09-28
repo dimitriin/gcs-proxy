@@ -31,7 +31,7 @@ docker run \
   -e GCS_PROXY_GOOGLE_CLOUD_STORAGE_CREDS_PATH /service_account.json \ 
   ghcr.io/dimitriin/gcs-proxy:v1.0.0
 ```
-Prebuilt docker image `ghcr.io/dimitriin/gcs-proxy:${RELEASE_TAG}` could be found at [GitHub Container Registry](./pkgs/container/gcs-proxy).
+Prebuilt docker image `ghcr.io/dimitriin/gcs-proxy:${RELEASE_TAG}` could be found at [GitHub Container Registry](https://github.com/dimitriin/gcs-proxy/pkgs/container/gcs-proxy).
 
 
 Then access to GCS bucket objects with:
@@ -92,7 +92,7 @@ Advanced configuration environment variables:
 
 ## Contributing
 
-Feel free to submit [issues](./issues) or [pull requests](./pulls).
+Feel free to submit [issues](https://github.com/dimitriin/gcs-proxy/issues) or [pull requests](https://github.com/dimitriin/gcs-proxy/pulls).
 
 ## License
 
