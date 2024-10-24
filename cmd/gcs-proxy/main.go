@@ -16,6 +16,7 @@ func main() {
 	do.Provide(injector, build.RequestResponseLogMwConfig)
 	do.Provide(injector, build.RequestObservabilityConfig)
 	do.Provide(injector, build.GCSConfig)
+	do.Provide(injector, build.ShutdownConfig)
 
 	do.Provide(injector, build.Logger)
 

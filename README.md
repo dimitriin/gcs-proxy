@@ -73,22 +73,26 @@ Optional command configuration env variables:
 
 Advanced configuration environment variables:
 
-| Variable | Description | Default |
-| -------- | ----------- | ------- |
-| `GCS_PROXY_LOG_LEVEL` | Log level | `INFO` |
-| `GCS_PROXY_SERVER_HOST` | Proxy server host | `localhost` |
-| `GCS_PROXY_SERVER_PORT` | Proxy server port | `8787` |
-| `GCS_PROXY_SERVER_READ_HEADER_TIMEOUT` | Read header timeout | `5s` |
-| `GCS_PROXY_SERVER_ROUTES_PROXY` | Route proxied to GCS | `/{bucket:[0-9a-zA-Z-_.]+}/{object:.*}` |
-| `GCS_PROXY_SERVER_ROUTES_HEALTH` | Health check route | `/_health` |
-| `GCS_PROXY_SERVER_ROUTES_METRICS` | Metrics route | `/_metrics` |
-| `GCS_PROXY_SERVER_REQUEST_RESPONSE_LOG_ENABLED` | Enable request/response logging | `true` |
-| `GCS_PROXY_SERVER_REQUEST_RESPONSE_LOG_LEVEL` | Request/response log level | `INFO` |
-| `GCS_PROXY_SERVER_OBSERVABILITY_METRICS_ENABLED` | Enable proxy metrics | `true` |
-| `GCS_PROXY_SERVER_OBSERVABILITY_METRICS_NAMESPACE` | Prometheus metrics namespace | `gcs` |
-| `GCS_PROXY_SERVER_OBSERVABILITY_METRICS_SUBSYSTEM` | Prometheus metrics subsystem | `proxy` |
-| `GCS_PROXY_GOOGLE_CLOUD_STORAGE_ENDPOINT` | GCS endpoint | `https://storage.googleapis.com` |
-| `GCS_PROXY_GOOGLE_CLOUD_STORAGE_SCOPES` | GCS scopes | `https://www.googleapis.com/auth/devstorage.read_write` |
+| Variable                                           | Description                     | Default                                                 |
+|----------------------------------------------------|---------------------------------|---------------------------------------------------------|
+| `GCS_PROXY_LOG_LEVEL`                              | Log level                       | `INFO`                                                  |
+| `GCS_PROXY_SERVER_HOST`                            | Proxy server host               | `localhost`                                             |
+| `GCS_PROXY_SERVER_PORT`                            | Proxy server port               | `8787`                                                  |
+| `GCS_PROXY_SERVER_READ_HEADER_TIMEOUT`             | Read header timeout             | `5s`                                                    |
+| `GCS_PROXY_SERVER_ROUTES_PROXY`                    | Route proxied to GCS            | `/{bucket:[0-9a-zA-Z-_.]+}/{object:.*}`                 |
+| `GCS_PROXY_SERVER_ROUTES_HEALTH`                   | Health check route              | `/_health`                                              |
+| `GCS_PROXY_SERVER_ROUTES_METRICS`                  | Metrics route                   | `/_metrics`                                             |
+| `GCS_PROXY_SERVER_REQUEST_RESPONSE_LOG_ENABLED`    | Enable request/response logging | `true`                                                  |
+| `GCS_PROXY_SERVER_REQUEST_RESPONSE_LOG_LEVEL`      | Request/response log level      | `INFO`                                                  |
+| `GCS_PROXY_SERVER_OBSERVABILITY_METRICS_ENABLED`   | Enable proxy metrics            | `true`                                                  |
+| `GCS_PROXY_SERVER_OBSERVABILITY_METRICS_NAMESPACE` | Prometheus metrics namespace    | `gcs`                                                   |
+| `GCS_PROXY_SERVER_OBSERVABILITY_METRICS_SUBSYSTEM` | Prometheus metrics subsystem    | `proxy`                                                 |
+| `GCS_PROXY_GOOGLE_CLOUD_STORAGE_ENDPOINT`          | GCS endpoint                    | `https://storage.googleapis.com`                        |
+| `GCS_PROXY_GOOGLE_CLOUD_STORAGE_SCOPES`            | GCS scopes                      | `https://www.googleapis.com/auth/devstorage.read_write` |
+| `GCS_PROXY_SHUTDOWN_PRE_STOP_TIMEOUT`              | Sleep timeout before handle sig | `0s`                                                    |
+| `GCS_PROXY_SHUTDOWN_EXIT_CODES_ON_SIG_TERM`        | Exit code on TERM sig           | `0`                                                     |
+| `GCS_PROXY_SHUTDOWN_EXIT_CODES_ON_SIG_INT`         | Exit code on INT sig            | `0`                                                     |
+| `GCS_PROXY_SHUTDOWN_EXIT_CODES_ON_SIG_QUIT`        | Exit code on QUIT sig           | `131`                                                   |
 
 ## Contributing
 

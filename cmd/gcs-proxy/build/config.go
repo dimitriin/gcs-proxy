@@ -36,3 +36,7 @@ func GCSConfig(i *do.Injector) (config.GoogleCloudStorageConfig, error) {
 func RequestObservabilityConfig(i *do.Injector) (config.ObservabilityConfig, error) {
 	return do.MustInvoke[config.ServerConfig](i).Observability, nil
 }
+
+func ShutdownConfig(i *do.Injector) (config.ShutdownConfig, error) {
+	return do.MustInvoke[config.Config](i).Shutdown, nil
+}

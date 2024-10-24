@@ -4,18 +4,24 @@ import (
 	"errors"
 	"fmt"
 	"log/slog"
+	"os"
+	"syscall"
 	"time"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/kelseyhightower/envconfig"
 )
 
-var ErrJSONAndFileGCSSAProvided = errors.New("either creds json or file must be provided")
+var (
+	ErrJSONAndFileGCSSAProvided = errors.New("either creds json or file must be provided")
+	ErrUnsupportedSignal        = errors.New("unsupported signal")
+)
 
 type Config struct {
 	Log                LogConfig
 	Server             ServerConfig
 	GoogleCloudStorage GoogleCloudStorageConfig `split_words:"true"`
+	Shutdown           ShutdownConfig
 }
 
 type LogConfig struct {
@@ -68,6 +74,30 @@ type GoogleCloudStorageConfig struct {
 type GoogleCloudStorageCredsConfig struct {
 	JSON string
 	File string
+}
+
+type ExitCodesConfig struct {
+	OnSigTerm int `default:"0" split_words:"true"`
+	OnSigInt  int `default:"0" split_words:"true"`
+	OnSigQuit int `default:"131" split_words:"true"`
+}
+
+func (c ExitCodesConfig) GetExitCode(sig os.Signal) (int, error) {
+	switch sig.String() {
+	case syscall.SIGTERM.String():
+		return c.OnSigTerm, nil
+	case syscall.SIGINT.String():
+		return c.OnSigInt, nil
+	case syscall.SIGQUIT.String():
+		return c.OnSigQuit, nil
+	default:
+		return 0, fmt.Errorf("%w %d", ErrUnsupportedSignal, sig)
+	}
+}
+
+type ShutdownConfig struct {
+	PreStopTimeout time.Duration   `default:"0s" split_words:"true"`
+	ExitCodes      ExitCodesConfig `split_words:"true"`
 }
 
 func ReadFromENVAndValidate() (Config, error) {
